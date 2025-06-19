@@ -1,0 +1,22 @@
+ /* Custom styles to ensure 'Inter' font is applied */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        /* Custom message box styling */
+        #messageBox {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        #messageBox.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Style for the definition content to prevent overflow */
+        #definitionContent {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;
+        }

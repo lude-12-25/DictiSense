@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DictiSense - Your AI Dictionary</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for 'Inter' -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+       
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-100 flex flex-col items-center p-4">
+
+    <!-- Custom Message Box -->
+    <div id="messageBox" class="fixed top-4 left-1/2 -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg z-50 flex items-center justify-between space-x-4" role="alert">
+        <span id="messageBoxText"></span>
+        <button id="closeMessageBox" class="text-white text-xl font-bold ml-4 p-1 rounded-full hover:bg-opacity-80 transition-opacity" aria-label="Close message">
+            &times;
+        </button>
+    </div>
+
+    <!-- Header Section -->
+    <header class="w-full max-w-2xl text-center mb-8 mt-8">
+        <h1 class="text-5xl font-extrabold text-gray-800 tracking-tight mb-4 drop-shadow-sm">
+            Dicti<span class="text-purple-600">Sense</span>
+        </h1>
+        <p class="text-lg text-gray-600">Understand words and concepts with Wikipedia's insight.</p>
+    </header>
+
+    <!-- Search Input Form -->
+    <form id="searchForm" class="w-full max-w-2xl bg-white p-2 rounded-full shadow-xl flex items-center mb-10 border border-gray-200">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Type a word or concept..."
+            class="flex-grow py-3 px-6 text-lg text-gray-700 outline-none rounded-l-full focus:ring-2 focus:ring-purple-300 transition-all duration-200"
+            aria-label="Word or concept input"
+        />
+        <button
+            type="submit"
+            id="searchButton"
+            class="bg-purple-600 text-white p-3 rounded-full shadow-md hover:bg-purple-700 transition-colors duration-200 flex-shrink-0 mr-1
+                   focus:outline-none focus:ring-4 focus:ring-purple-300 focus:ring-offset-2
+                   active:bg-purple-800 transform active:scale-95 flex items-center justify-center w-12 h-12"
+            aria-label="Search"
+        >
+            <svg id="searchIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" class="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+            <svg id="loadingSpinner" class="hidden animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+        </button>
+    </form>
+
+    <!-- Main Content Area -->
+    <div id="mainContent" class="w-full max-w-3xl flex flex-col md:flex-row gap-6">
+        <!-- Definition Display Area -->
+        <div id="definitionCard" class="flex-grow bg-white rounded-xl shadow-lg p-6 border border-gray-100 hidden">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4" id="wordTitle"></h2>
+            <p class="text-gray-700 leading-relaxed text-base" id="definitionContent"></p>
+            <a id="wikipediaLink" href="#" target="_blank" rel="noopener noreferrer"
+               class="inline-block mt-4 text-blue-600 hover:underline transition-colors duration-150 text-sm">
+                Read more &rarr;
+            </a>
+        </div>
+
+        <!-- Recent Searches and Initial Prompt / Error Messages -->
+        <div class="md:w-1/3 w-full">
+            <!-- Recent Searches -->
+            <div id="recentSearchesCard" class="bg-white rounded-xl shadow-lg p-6 border border-gray-100 mb-6 hidden">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Recent Searches</h3>
+                <ul id="recentSearchesList" class="space-y-2 text-gray-700">
+                    <!-- Recent searches will be dynamically added here -->
+                    <li class="text-gray-500">No recent searches yet.</li>
+                </ul>
+            </div>
+
+            <!-- Error message -->
+            <div id="errorMessage" class="hidden bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md" role="alert">
+                <p class="font-bold">Error:</p>
+                <p id="errorText"></p>
+            </div>
+
+            <!-- Initial prompt when no content is displayed -->
+            <div id="initialPrompt" class="text-center text-gray-500 text-lg p-6 bg-white rounded-xl shadow-md border border-gray-100">
+                <p>Enter a word or concept in the search bar above.</p>
+                <p class="mt-2">For example, try "Artificial Intelligence" or "Democracy".</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w-full max-w-2xl text-center mt-12 py-4 text-gray-500 text-sm">
+        <p>&copy; <span id="currentYear"></span> DictiSense. All rights reserved. Powered by Wikipedia.</p>
+    </footer>
+
+    <script src="index.js">
+    </script>
+</body>
+</html>
